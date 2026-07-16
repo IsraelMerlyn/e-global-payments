@@ -1,8 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+    createRouter,
+    createWebHistory,
+    type RouteRecordRaw,
+} from 'vue-router'
 
 import { APP_CONFIG } from '@/shared/config/app'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
     {
         path: '/',
         redirect: {
@@ -41,6 +45,6 @@ router.afterEach((to) => {
     const pageTitle = to.meta.title
 
     document.title = pageTitle
-        ? `${pageTitle} | ${APP_CONFIG.name}`
+        ? `${String(pageTitle)} | ${APP_CONFIG.name}`
         : APP_CONFIG.defaultTitle
 })
