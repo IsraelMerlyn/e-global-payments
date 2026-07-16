@@ -77,17 +77,19 @@ export const useAuthStore = defineStore(
         async function login(
             credentials: LoginCredentials,
         ): Promise<AuthUser> {
+            if (isLoading.value) {
+                throw new Error('Ya existe una solicitud de inicio de sesión')
+            }
+
             isLoading.value = true
             errorMessage.value = ''
 
             try {
-                const response =
-                    await loginRequest(credentials)
+                const response = await loginRequest(credentials)
 
-                const authenticatedUser =
-                    decodeAccessToken(
-                        response.accessToken,
-                    )
+                const authenticatedUser = decodeAccessToken(
+                    response.accessToken,
+                )
 
                 persistSession(
                     response.accessToken,
@@ -96,8 +98,7 @@ export const useAuthStore = defineStore(
 
                 return authenticatedUser
             } catch (error) {
-                const apiError =
-                    normalizeApiError(error)
+                const apiError = normalizeApiError(error)
 
                 errorMessage.value =
                     apiError.status > 0

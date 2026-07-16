@@ -45,13 +45,16 @@ function fillSupervisorCredentials(): void {
 }
 
 async function handleSubmit(): Promise<void> {
+  if (authStore.isLoading) {
+    return
+  }
+
   formError.value = ''
 
-  const validation =
-    loginCredentialsSchema.safeParse({
-      username: username.value,
-      password: password.value,
-    })
+  const validation = loginCredentialsSchema.safeParse({
+    username: username.value,
+    password: password.value,
+  })
 
   if (!validation.success) {
     formError.value =
@@ -62,8 +65,9 @@ async function handleSubmit(): Promise<void> {
   }
 
   try {
-    const authenticatedUser =
-      await authStore.login(validation.data)
+    const authenticatedUser = await authStore.login(
+      validation.data,
+    )
 
     const requestedRedirect =
       typeof route.query.redirect === 'string'
@@ -83,7 +87,8 @@ async function handleSubmit(): Promise<void> {
     })
   } catch {
     formError.value =
-      authStore.errorMessage
+      authStore.errorMessage ||
+      'No fue posible iniciar sesión'
   }
 }
 </script>
@@ -287,26 +292,32 @@ async function handleSubmit(): Promise<void> {
                 </button>
               </div>
             </div>
-<template v-if="authStore.isLoading">
-  <LoaderCircle
-    :size="18"
-    class="animate-spin"
-    aria-hidden="true"
-  />
+<button
+  type="submit"
+  :disabled="authStore.isLoading"
+  class="group flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-brand-500 px-5 text-sm font-semibold text-white shadow-xl shadow-brand-950/40 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-400 hover:shadow-brand-900/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300 active:translate-y-0 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
+>
+  <template v-if="authStore.isLoading">
+    <LoaderCircle
+      :size="18"
+      class="animate-spin"
+      aria-hidden="true"
+    />
 
-  Validando acceso
-</template>
+    Iniciando sesión...
+  </template>
 
-<template v-else>
-  Continuar
+  <template v-else>
+    Iniciar sesión
 
-  <ArrowRight
-    :size="18"
-    :stroke-width="2"
-    class="transition-transform group-hover:translate-x-0.5"
-    aria-hidden="true"
-  />
-</template>
+    <ArrowRight
+      :size="18"
+      :stroke-width="2"
+      class="transition-transform group-hover:translate-x-0.5"
+      aria-hidden="true"
+    />
+  </template>
+</button>
             <div
               v-if="formError"
               class="rounded-2xl border border-brand-400/20 bg-brand-400/8 p-4 text-sm leading-6 text-brand-100"
