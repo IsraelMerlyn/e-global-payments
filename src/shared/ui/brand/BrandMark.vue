@@ -16,12 +16,8 @@ withDefaults(
 <template>
   <div class="inline-flex items-center gap-3">
     <div
-      class="relative grid size-11 shrink-0 place-items-center overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-lg shadow-blue-950/30 backdrop-blur-xl"
+      class="relative grid size-11 shrink-0 place-items-center overflow-hidden rounded-2xl border border-slate-800 bg-blue-600 shadow-lg shadow-blue-950/30"
     >
-      <div
-        class="absolute inset-0 bg-linear-to-br from-brand-400/35 via-transparent to-cyan-300/20"
-      />
-
       <ShieldCheck
         :size="23"
         :stroke-width="1.8"

@@ -38,6 +38,32 @@ const routes: RouteRecordRaw[] = [
         },
     },
     {
+        path: '/operador/ventas',
+        name: 'operator-sales',
+        component: () =>
+            import(
+                '@/pages/operator/ui/OperatorSalesPage.vue'
+            ),
+        meta: {
+            title: 'Nueva Venta',
+            requiresAuth: true,
+            roles: ['Operador'],
+        },
+    },
+    {
+        path: '/operador/transacciones',
+        name: 'operator-transactions',
+        component: () =>
+            import(
+                '@/pages/operator/ui/OperatorTransactionsPage.vue'
+            ),
+        meta: {
+            title: 'Consulta de Transacciones',
+            requiresAuth: true,
+            roles: ['Operador'],
+        },
+    },
+    {
         path: '/supervisor',
         name: 'supervisor-home',
         component: () =>
@@ -46,6 +72,32 @@ const routes: RouteRecordRaw[] = [
             ),
         meta: {
             title: 'Panel del Supervisor',
+            requiresAuth: true,
+            roles: ['Supervisor'],
+        },
+    },
+    {
+        path: '/supervisor/cancelaciones',
+        name: 'supervisor-cancellations',
+        component: () =>
+            import(
+                '@/pages/supervisor/ui/SupervisorCancellationsPage.vue'
+            ),
+        meta: {
+            title: 'Cancelaciones',
+            requiresAuth: true,
+            roles: ['Supervisor'],
+        },
+    },
+    {
+        path: '/supervisor/devoluciones',
+        name: 'supervisor-refunds',
+        component: () =>
+            import(
+                '@/pages/supervisor/ui/SupervisorRefundsPage.vue'
+            ),
+        meta: {
+            title: 'Devoluciones',
             requiresAuth: true,
             roles: ['Supervisor'],
         },

@@ -95,33 +95,15 @@ async function handleSubmit(): Promise<void> {
 
 <template >
   <main class="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-    <div
-      class="pointer-events-none absolute -top-48 -left-40 size-[34rem] rounded-full bg-brand-600/20 blur-[120px]"
-    />
-
-    <div
-      class="pointer-events-none absolute -right-52 -bottom-60 size-[38rem] rounded-full bg-cyan-400/10 blur-[140px]"
-    />
-
-    <div
-      class="pointer-events-none absolute inset-0 opacity-[0.16]"
-      style="
-        background-image:
-          linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-        background-size: 44px 44px;
-      "
-    />
-
     <section class="relative grid min-h-screen lg:grid-cols-[1.08fr_0.92fr]">
       <aside
-        class="relative hidden min-h-screen flex-col justify-between overflow-hidden border-r border-white/8 px-12 py-10 lg:flex xl:px-18 xl:py-14"
+        class="relative hidden min-h-screen flex-col justify-between overflow-hidden border-r border-slate-800 px-12 py-10 lg:flex xl:px-18 xl:py-14 bg-slate-900"
       >
         <BrandMark />
 
         <div class="max-w-2xl">
           <div
-            class="mb-7 inline-flex items-center gap-2 rounded-full border border-brand-300/20 bg-brand-300/8 px-3.5 py-2 text-xs font-medium text-brand-200 backdrop-blur-xl"
+            class="mb-7 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/5 px-3.5 py-2 text-xs font-medium text-blue-200 backdrop-blur-xl"
           >
             <span class="relative flex size-2">
               <span
@@ -137,9 +119,7 @@ async function handleSubmit(): Promise<void> {
             class="max-w-xl text-5xl leading-[1.05] font-semibold tracking-[-0.045em] text-white xl:text-6xl"
           >
             Operaciones financieras
-            <span
-              class="bg-linear-to-r from-brand-300 via-sky-300 to-cyan-200 bg-clip-text text-transparent"
-            >
+            <span class="text-blue-500">
               controladas y seguras.
             </span>
           </h1>
@@ -151,12 +131,12 @@ async function handleSubmit(): Promise<void> {
 
           <div class="mt-10 grid max-w-xl grid-cols-3 gap-3">
             <article
-              class="rounded-2xl border border-white/8 bg-white/[0.045] p-4 backdrop-blur-xl"
+              class="rounded-2xl border border-slate-800 bg-slate-950 p-4"
             >
               <Activity
                 :size="19"
                 :stroke-width="1.8"
-                class="mb-5 text-brand-300"
+                class="mb-5 text-blue-500"
                 aria-hidden="true"
               />
 
@@ -165,12 +145,12 @@ async function handleSubmit(): Promise<void> {
             </article>
 
             <article
-              class="rounded-2xl border border-white/8 bg-white/[0.045] p-4 backdrop-blur-xl"
+              class="rounded-2xl border border-slate-800 bg-slate-950 p-4"
             >
               <ShieldCheck
                 :size="19"
                 :stroke-width="1.8"
-                class="mb-5 text-emerald-300"
+                class="mb-5 text-emerald-500"
                 aria-hidden="true"
               />
 
@@ -179,12 +159,12 @@ async function handleSubmit(): Promise<void> {
             </article>
 
             <article
-              class="rounded-2xl border border-white/8 bg-white/[0.045] p-4 backdrop-blur-xl"
+              class="rounded-2xl border border-slate-800 bg-slate-950 p-4"
             >
               <CreditCard
                 :size="19"
                 :stroke-width="1.8"
-                class="mb-5 text-cyan-300"
+                class="mb-5 text-blue-500"
                 aria-hidden="true"
               />
 
@@ -201,7 +181,7 @@ async function handleSubmit(): Promise<void> {
       </aside>
 
       <section
-        class="flex min-h-screen items-center justify-center px-5 py-10 sm:px-8 lg:px-12 xl:px-18"
+        class="flex min-h-screen items-center justify-center px-5 py-10 sm:px-8 lg:px-12 xl:px-18 bg-slate-950"
       >
         <div class="w-full max-w-md">
           <div class="mb-10 lg:hidden">
@@ -210,12 +190,12 @@ async function handleSubmit(): Promise<void> {
 
           <div>
             <div
-              class="mb-6 inline-flex size-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-brand-300 shadow-xl shadow-black/20"
+              class="mb-6 inline-flex size-12 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900 text-blue-500 shadow-xl shadow-black/20"
             >
               <LockKeyhole :size="22" :stroke-width="1.8" aria-hidden="true" />
             </div>
 
-            <p class="text-sm font-medium text-brand-300">Portal transaccional</p>
+            <p class="text-sm font-medium text-blue-500">Portal transaccional</p>
 
             <h2 class="mt-2 text-3xl font-semibold tracking-[-0.035em] text-white">
               Inicia sesión
@@ -248,7 +228,7 @@ async function handleSubmit(): Promise<void> {
                   autocomplete="username"
                   placeholder="Ingresa tu usuario"
                   required
-                  class="h-13 w-full rounded-2xl border border-white/10 bg-white/[0.045] pr-4 pl-12 text-sm text-white outline-none transition placeholder:text-slate-600 hover:border-white/15 focus:border-brand-400/70 focus:bg-white/[0.065] focus:ring-4 focus:ring-brand-500/10"
+                  class="h-13 w-full rounded-2xl border border-slate-800 bg-slate-900 pr-4 pl-12 text-sm text-white outline-none transition placeholder:text-slate-600 hover:border-slate-700 focus:border-blue-500 focus:bg-slate-900 focus:ring-4 focus:ring-blue-500/10"
                 />
               </div>
             </div>
@@ -278,12 +258,12 @@ async function handleSubmit(): Promise<void> {
                   autocomplete="current-password"
                   placeholder="Ingresa tu contraseña"
                   required
-                  class="h-13 w-full rounded-2xl border border-white/10 bg-white/[0.045] pr-12 pl-12 text-sm text-white outline-none transition placeholder:text-slate-600 hover:border-white/15 focus:border-brand-400/70 focus:bg-white/[0.065] focus:ring-4 focus:ring-brand-500/10"
+                  class="h-13 w-full rounded-2xl border border-slate-800 bg-slate-900 pr-12 pl-12 text-sm text-white outline-none transition placeholder:text-slate-600 hover:border-slate-700 focus:border-blue-500 focus:bg-slate-900 focus:ring-4 focus:ring-blue-500/10"
                 />
 
                 <button
                   type="button"
-                  class="absolute top-1/2 right-3 grid size-9 -translate-y-1/2 place-items-center rounded-xl text-slate-500 transition hover:bg-white/5 hover:text-slate-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
+                  class="absolute top-1/2 right-3 grid size-9 -translate-y-1/2 place-items-center rounded-xl text-slate-500 transition hover:bg-white/5 hover:text-slate-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                   :aria-label="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
                   @click="showPassword = !showPassword"
                 >
@@ -292,35 +272,37 @@ async function handleSubmit(): Promise<void> {
                 </button>
               </div>
             </div>
-<button
-  type="submit"
-  :disabled="authStore.isLoading"
-  class="group flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-brand-500 px-5 text-sm font-semibold text-white shadow-xl shadow-brand-950/40 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-400 hover:shadow-brand-900/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300 active:translate-y-0 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
->
-  <template v-if="authStore.isLoading">
-    <LoaderCircle
-      :size="18"
-      class="animate-spin"
-      aria-hidden="true"
-    />
 
-    Iniciando sesión...
-  </template>
+            <button
+              type="submit"
+              :disabled="authStore.isLoading"
+              class="group flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-xl shadow-blue-950/40 transition duration-200 hover:-translate-y-0.5 hover:bg-blue-500 hover:shadow-blue-900/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:translate-y-0 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <template v-if="authStore.isLoading">
+                <LoaderCircle
+                  :size="18"
+                  class="animate-spin"
+                  aria-hidden="true"
+                />
 
-  <template v-else>
-    Iniciar sesión
+                Iniciando sesión...
+              </template>
 
-    <ArrowRight
-      :size="18"
-      :stroke-width="2"
-      class="transition-transform group-hover:translate-x-0.5"
-      aria-hidden="true"
-    />
-  </template>
-</button>
+              <template v-else>
+                Iniciar sesión
+
+                <ArrowRight
+                  :size="18"
+                  :stroke-width="2"
+                  class="transition-transform group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </template>
+            </button>
+
             <div
               v-if="formError"
-              class="rounded-2xl border border-brand-400/20 bg-brand-400/8 p-4 text-sm leading-6 text-brand-100"
+              class="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm leading-6 text-red-200"
               role="status"
               aria-live="polite"
             >
@@ -328,44 +310,39 @@ async function handleSubmit(): Promise<void> {
             </div>
           </form>
 
-          <div class="mt-8 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+          <div class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-4">
             <p class="text-xs font-semibold tracking-wider text-slate-500 uppercase">
               Usuarios de demostración
             </p>
 
             <div class="mt-3 grid gap-2 sm:grid-cols-2">
-              <div class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5">
               <button
-  type="button"
-  class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5 text-left transition hover:border-brand-400/20 hover:bg-brand-400/5"
-  @click="fillOperatorCredentials"
->
-  <p class="text-xs font-medium text-slate-300">
-    Operador
-  </p>
+                type="button"
+                class="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-left transition hover:border-blue-500/20 hover:bg-blue-500/5"
+                @click="fillOperatorCredentials"
+              >
+                <p class="text-xs font-medium text-slate-300">
+                  Operador
+                </p>
 
-  <p class="mt-1 text-[0.7rem] text-slate-600">
-    Ventas y consultas
-  </p>
-</button>
-                <p class="mt-1 text-[0.7rem] text-slate-600">Ventas y consultas</p>
-              </div>
+                <p class="mt-1 text-[0.7rem] text-slate-500">
+                  Ventas y consultas
+                </p>
+              </button>
 
-              <div class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5">
-                <button
-  type="button"
-  class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5 text-left transition hover:border-violet-400/20 hover:bg-violet-400/5"
-  @click="fillSupervisorCredentials"
->
-  <p class="text-xs font-medium text-slate-300">
-    Supervisor
-  </p>
+              <button
+                type="button"
+                class="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-left transition hover:border-violet-500/20 hover:bg-violet-500/5"
+                @click="fillSupervisorCredentials"
+              >
+                <p class="text-xs font-medium text-slate-300">
+                  Supervisor
+                </p>
 
-  <p class="mt-1 text-[0.7rem] text-slate-600">
-    Cancelaciones y devoluciones
-  </p>
-</button>
-              </div>
+                <p class="mt-1 text-[0.7rem] text-slate-500">
+                  Cancelaciones y devoluciones
+                </p>
+              </button>
             </div>
           </div>
 

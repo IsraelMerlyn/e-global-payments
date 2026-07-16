@@ -46,7 +46,7 @@ const homeRoute = computed(() => ({
 
       <RouterLink
         :to="homeRoute"
-        class="mt-8 inline-flex h-12 items-center gap-2 rounded-2xl bg-brand-500 px-5 text-sm font-semibold text-white transition hover:bg-brand-400"
+        class="mt-8 inline-flex h-12 items-center gap-2 rounded-2xl bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-blue-500"
       >
         <ArrowLeft :size="17" />
         Regresar al panel
