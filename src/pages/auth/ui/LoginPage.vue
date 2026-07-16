@@ -102,18 +102,7 @@ async function handleSubmit(): Promise<void> {
         <BrandMark />
 
         <div class="max-w-2xl">
-          <div
-            class="mb-7 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/5 px-3.5 py-2 text-xs font-medium text-blue-200 backdrop-blur-xl"
-          >
-            <span class="relative flex size-2">
-              <span
-                class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60"
-              />
-              <span class="relative inline-flex size-2 rounded-full bg-emerald-400" />
-            </span>
-
-            Plataforma operativa disponible
-          </div>
+          
 
           <h1
             class="max-w-xl text-5xl leading-[1.05] font-semibold tracking-[-0.045em] text-white xl:text-6xl"
@@ -174,10 +163,7 @@ async function handleSubmit(): Promise<void> {
           </div>
         </div>
 
-        <div class="flex items-center gap-3 text-xs text-slate-500">
-          <CheckCircle2 :size="16" class="text-emerald-400" aria-hidden="true" />
-          Comunicación mediante contratos JSON tipados
-        </div>
+        
       </aside>
 
       <section
