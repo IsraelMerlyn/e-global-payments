@@ -6,26 +6,89 @@ import {
   CreditCard,
   Eye,
   EyeOff,
+  LoaderCircle,
   LockKeyhole,
   ShieldCheck,
   UserRound,
 } from 'lucide-vue-next'
 import { ref } from 'vue'
+import {
+  useRoute,
+  useRouter,
+} from 'vue-router'
 
+import {
+  loginCredentialsSchema,
+} from '@/pages/auth/model/auth.schemas'
+import { useAuthStore } from '@/pages/auth/model/auth.store'
 import BrandMark from '@/shared/ui/brand/BrandMark.vue'
+
+const router = useRouter()
+const route = useRoute()
+const authStore = useAuthStore()
 
 const username = ref('')
 const password = ref('')
 const showPassword = ref(false)
-const phaseMessage = ref('')
+const formError = ref('')
 
-function handleSubmit(): void {
-  phaseMessage.value =
-    'La interfaz está preparada. La autenticación JWT se conectará en la Fase 2.'
+function fillOperatorCredentials(): void {
+  username.value = 'operador'
+  password.value = 'Operador123'
+  formError.value = ''
+}
+
+function fillSupervisorCredentials(): void {
+  username.value = 'supervisor'
+  password.value = 'Supervisor123'
+  formError.value = ''
+}
+
+async function handleSubmit(): Promise<void> {
+  formError.value = ''
+
+  const validation =
+    loginCredentialsSchema.safeParse({
+      username: username.value,
+      password: password.value,
+    })
+
+  if (!validation.success) {
+    formError.value =
+      validation.error.issues[0]?.message ??
+      'Revisa los datos capturados'
+
+    return
+  }
+
+  try {
+    const authenticatedUser =
+      await authStore.login(validation.data)
+
+    const requestedRedirect =
+      typeof route.query.redirect === 'string'
+        ? route.query.redirect
+        : null
+
+    if (requestedRedirect) {
+      await router.replace(requestedRedirect)
+      return
+    }
+
+    await router.replace({
+      name:
+        authenticatedUser.role === 'Supervisor'
+          ? 'supervisor-home'
+          : 'operator-home',
+    })
+  } catch {
+    formError.value =
+      authStore.errorMessage
+  }
 }
 </script>
 
-<template>
+<template >
   <main class="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
     <div
       class="pointer-events-none absolute -top-48 -left-40 size-[34rem] rounded-full bg-brand-600/20 blur-[120px]"
@@ -224,28 +287,33 @@ function handleSubmit(): void {
                 </button>
               </div>
             </div>
+<template v-if="authStore.isLoading">
+  <LoaderCircle
+    :size="18"
+    class="animate-spin"
+    aria-hidden="true"
+  />
 
-            <button
-              type="submit"
-              class="group flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-brand-500 px-5 text-sm font-semibold text-white shadow-xl shadow-brand-950/40 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-400 hover:shadow-brand-900/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300 active:translate-y-0"
-            >
-              Continuar
+  Validando acceso
+</template>
 
-              <ArrowRight
-                :size="18"
-                :stroke-width="2"
-                class="transition-transform group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </button>
+<template v-else>
+  Continuar
 
+  <ArrowRight
+    :size="18"
+    :stroke-width="2"
+    class="transition-transform group-hover:translate-x-0.5"
+    aria-hidden="true"
+  />
+</template>
             <div
-              v-if="phaseMessage"
+              v-if="formError"
               class="rounded-2xl border border-brand-400/20 bg-brand-400/8 p-4 text-sm leading-6 text-brand-100"
               role="status"
               aria-live="polite"
             >
-              {{ phaseMessage }}
+              {{ formError }}
             </div>
           </form>
 
@@ -256,15 +324,36 @@ function handleSubmit(): void {
 
             <div class="mt-3 grid gap-2 sm:grid-cols-2">
               <div class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5">
-                <p class="text-xs font-medium text-slate-300">Operador</p>
+              <button
+  type="button"
+  class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5 text-left transition hover:border-brand-400/20 hover:bg-brand-400/5"
+  @click="fillOperatorCredentials"
+>
+  <p class="text-xs font-medium text-slate-300">
+    Operador
+  </p>
+
+  <p class="mt-1 text-[0.7rem] text-slate-600">
+    Ventas y consultas
+  </p>
+</button>
                 <p class="mt-1 text-[0.7rem] text-slate-600">Ventas y consultas</p>
               </div>
 
               <div class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5">
-                <p class="text-xs font-medium text-slate-300">Supervisor</p>
-                <p class="mt-1 text-[0.7rem] text-slate-600">
-                  Cancelaciones y devoluciones
-                </p>
+                <button
+  type="button"
+  class="rounded-xl border border-white/6 bg-slate-950/50 px-3 py-2.5 text-left transition hover:border-violet-400/20 hover:bg-violet-400/5"
+  @click="fillSupervisorCredentials"
+>
+  <p class="text-xs font-medium text-slate-300">
+    Supervisor
+  </p>
+
+  <p class="mt-1 text-[0.7rem] text-slate-600">
+    Cancelaciones y devoluciones
+  </p>
+</button>
               </div>
             </div>
           </div>
